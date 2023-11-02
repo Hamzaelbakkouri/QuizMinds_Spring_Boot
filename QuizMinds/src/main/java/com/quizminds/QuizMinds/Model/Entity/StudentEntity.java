@@ -22,9 +22,9 @@ public final class StudentEntity extends PersonEntity {
         super(id, firstname, lastname, bd, address);
         setRegistrationDate(registrationdate);
     }
-    @OneToMany
+    @OneToMany(mappedBy = "studentEntity")
     private List<AssignQuizEntity> assignQuizs;
 
-    @OneToMany
+    @OneToMany(mappedBy = "student")
     private List<AnswerStudentEntity> answerStudents;
 }

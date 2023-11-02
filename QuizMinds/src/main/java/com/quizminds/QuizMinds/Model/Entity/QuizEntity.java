@@ -5,12 +5,12 @@ import lombok.*;
 
 import java.util.List;
 
-@Entity
-@Table(name = "quiz")
 @Setter
 @Getter
-@NoArgsConstructor
+@Entity
+@Table(name = "quiz")
 @RequiredArgsConstructor
+@NoArgsConstructor
 public class QuizEntity {
     @Id
     @GeneratedValue(
@@ -29,6 +29,7 @@ public class QuizEntity {
     @ManyToOne
     @JoinColumn(name = "teacher_id")
     private TeacherEntity teacherEntity;
+
     @OneToMany(mappedBy = "quizEntity")
     private List<AssignQuizEntity> assignQuizs;
 

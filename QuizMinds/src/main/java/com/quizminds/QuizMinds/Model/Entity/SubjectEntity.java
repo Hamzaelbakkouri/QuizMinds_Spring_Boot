@@ -23,6 +23,6 @@ public class SubjectEntity {
     @OneToOne
     private SubjectEntity subject;
 
-    @OneToMany
+    @OneToMany(mappedBy = "subjectEntity")
     private List<QuestionEntity> questions;
 }

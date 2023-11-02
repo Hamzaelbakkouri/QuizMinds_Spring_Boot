@@ -21,6 +21,6 @@ public class AnswerQuestionEntity {
     @NonNull
     private String text;
     @NonNull
-    @OneToMany
+    @OneToMany(mappedBy = "answerQuestion")
     private List<ValidationEntity> validations;
 }

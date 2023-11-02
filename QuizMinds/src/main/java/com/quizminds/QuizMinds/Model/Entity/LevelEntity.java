@@ -27,6 +27,9 @@ public class LevelEntity {
     @ManyToOne
     private QuestionEntity questionEntity;
 
-    @OneToMany
+    @OneToMany(mappedBy = "levelEntity")
     private List<QuestionEntity> questionEntities;
+
+//    @OneToMany(mappedBy = "mediaEntities")
+//    private List<QuestionEntity> questionEntities;
 }

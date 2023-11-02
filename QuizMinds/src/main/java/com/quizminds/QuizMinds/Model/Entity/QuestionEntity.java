@@ -27,15 +27,15 @@ public class QuestionEntity {
     @ManyToOne
     private SubjectEntity subjectEntity;
 
-    @OneToMany
+    @OneToMany(mappedBy = "questionEntity")
     private List<QuizQuestionEntity> quizQuestionEntities;
 
-    @OneToOne
+    @ManyToOne
     private LevelEntity levelEntity;
 
-    @OneToOne
+    @ManyToOne
     private MediaEntity mediaEntities;
 
-    @OneToMany
+    @OneToMany(mappedBy = "question")
     private List<ValidationEntity> validationEntities;
 }
