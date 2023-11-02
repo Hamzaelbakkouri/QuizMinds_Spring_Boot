@@ -18,10 +18,11 @@ import java.util.List;
 public final class StudentEntity extends PersonEntity {
     private LocalDate registrationDate;
 
-    public StudentEntity(String id, String firstname, String lastname, LocalDate bd, String address, LocalDate registrationdate) {
-        super(id, firstname, lastname, bd, address);
+    public StudentEntity(String code, String firstname, String lastname, LocalDate bd, String address, LocalDate registrationdate, String email) {
+        super(code, firstname, lastname, bd, address, email);
         setRegistrationDate(registrationdate);
     }
+
     @OneToMany(mappedBy = "studentEntity")
     private List<AssignQuizEntity> assignQuizs;
 
