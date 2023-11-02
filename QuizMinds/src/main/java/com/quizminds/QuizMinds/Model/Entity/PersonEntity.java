@@ -1,10 +1,7 @@
 package com.quizminds.QuizMinds.Model.Entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.time.LocalDate;
 
@@ -15,19 +12,24 @@ import java.time.LocalDate;
 @NoArgsConstructor
 public abstract class PersonEntity {
     @Id
-    @GeneratedValue(
+    @GeneratedValue( 
             strategy = GenerationType.SEQUENCE,
-            generator = "student_sequence"
+            generator = "Person_sequence"
     )
     @SequenceGenerator(
-            name = "student_sequence",
-            sequenceName = "student_sequence",
+            name = "Person_sequence",
+            sequenceName = "Person_sequence",
             allocationSize = 1
     )
+    @NonNull
     private String id;
+    @NonNull
     private String firstName;
+    @NonNull
     private String lastName;
+    @NonNull
     private LocalDate dateOfBirth;
+    @NonNull
     private String address;
 
 }
