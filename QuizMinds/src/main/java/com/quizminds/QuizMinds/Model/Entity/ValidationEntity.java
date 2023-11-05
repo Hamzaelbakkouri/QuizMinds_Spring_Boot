@@ -3,12 +3,12 @@ package com.quizminds.QuizMinds.Model.Entity;
 import jakarta.persistence.*;
 import lombok.*;
 
-@Entity
-@Table
 @Setter
 @Getter
 @NoArgsConstructor
 @RequiredArgsConstructor
+@Entity
+@Table
 public class ValidationEntity {
     @Id
     @GeneratedValue(

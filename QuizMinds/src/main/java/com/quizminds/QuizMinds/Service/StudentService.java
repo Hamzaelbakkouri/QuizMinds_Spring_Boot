@@ -27,6 +27,21 @@ public final class StudentService {
         if (studentOptional.isPresent()) {
             throw new IllegalStateException("try different infos, something already taken");
         }
-        return studentEntity;
+        StudentEntity student = this.studentRepository.save(studentEntity);
+        return student;
+    }
+
+    public Optional<StudentEntity> getOneStudent(StudentEntity student) {
+        return this.studentRepository.findById(student.getCode());
+    }
+
+    public Boolean deleteStudent(StudentEntity student) {
+        try {
+            this.studentRepository.deleteById(student.getCode());
+            return true;
+        } catch (Exception e) {
+            new Exception("cant delete ,Something went wrong");
+            return false;
+        }
     }
 }

@@ -25,8 +25,21 @@ public class StudentController {
 
     @PostMapping(name = "/insertstudent")
     public StudentEntity insertStudent(@RequestBody StudentEntity student) {
-//        Optional<StudentEntity> studentEntity = this.studentService.insertStudent(student);
-        return student;
+        return this.studentService.insertStudent(student);
     }
 
+    @GetMapping(name = "/getone/{id}")
+    public StudentEntity getOneStudent(@PathVariable String code) {
+        StudentEntity student = new StudentEntity();
+        student.setCode(code);
+        Optional<StudentEntity> theNewStudent = this.studentService.getOneStudent(student);
+        return theNewStudent.orElse(null);
+    }
+
+    @GetMapping(name = "/delete/{id}")
+    public Boolean deleteStudent(@PathVariable String code) {
+        StudentEntity student = new StudentEntity();
+        student.setCode(code);
+        return this.studentService.deleteStudent(student);
+    }
 }
