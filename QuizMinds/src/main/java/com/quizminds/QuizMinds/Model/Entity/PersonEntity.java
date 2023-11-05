@@ -22,7 +22,7 @@ public abstract class PersonEntity {
             allocationSize = 1
     )
     @NonNull
-    private String id;
+    private String code;
     @NonNull
     private String firstName;
     @NonNull
@@ -31,6 +31,8 @@ public abstract class PersonEntity {
     private LocalDate dateOfBirth;
     @NonNull
     private String address;
+    @NonNull
+    private String Email;
 
 }
 
