@@ -2,26 +2,21 @@ package com.quizminds.QuizMinds.Model.Entity;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.UuidGenerator;
 
 import java.time.LocalDate;
 
 @Setter
 @Getter
 @MappedSuperclass
-@AllArgsConstructor
+@RequiredArgsConstructor
 @NoArgsConstructor
 public abstract class PersonEntity {
     @Id
-    @GeneratedValue( 
-            strategy = GenerationType.SEQUENCE,
-            generator = "Person_sequence"
-    )
-    @SequenceGenerator(
-            name = "Person_sequence",
-            sequenceName = "Person_sequence",
-            allocationSize = 1
-    )
+    @UuidGenerator
+    private String id;
     @NonNull
+    @Column(unique=true)
     private String code;
     @NonNull
     private String firstName;
@@ -32,7 +27,6 @@ public abstract class PersonEntity {
     @NonNull
     private String address;
     @NonNull
-    private String Email;
-
+    private String email;
 }
 

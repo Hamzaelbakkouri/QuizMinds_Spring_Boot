@@ -5,6 +5,7 @@ import com.quizminds.QuizMinds.Service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -18,28 +19,34 @@ public class StudentController {
         this.studentService = studentService;
     }
 
-    @GetMapping(name = "/getAll")
+    @GetMapping(path = "/getall")
     public List<StudentEntity> getAllStudent() {
         return this.studentService.getAllStudent();
     }
 
-    @PostMapping(name = "/insertstudent")
+    @PostMapping(path = "/addstudent")
     public StudentEntity insertStudent(@RequestBody StudentEntity student) {
+        student.setRegistrationDate(LocalDate.now());
         return this.studentService.insertStudent(student);
     }
 
-    @GetMapping(name = "/getone/{id}")
+    @GetMapping(path = "/getone/{code}")
     public StudentEntity getOneStudent(@PathVariable String code) {
         StudentEntity student = new StudentEntity();
         student.setCode(code);
-        Optional<StudentEntity> theNewStudent = this.studentService.getOneStudent(student);
+        Optional<StudentEntity> theNewStudent = Optional.ofNullable(this.studentService.getOneStudent(student));
         return theNewStudent.orElse(null);
     }
 
-    @GetMapping(name = "/delete/{id}")
-    public Boolean deleteStudent(@PathVariable String code) {
+    @DeleteMapping(path = "/delete/{code}")
+    public String deleteStudent(@PathVariable String code) {
         StudentEntity student = new StudentEntity();
-        student.setCode(code);
+        student.setId(code);
         return this.studentService.deleteStudent(student);
+    }
+
+    @PutMapping("/update/{code}")
+    public StudentEntity updateAnswer(@PathVariable String code, @RequestBody StudentEntity student) {
+        return studentService.updateStudent(code, student);
     }
 }

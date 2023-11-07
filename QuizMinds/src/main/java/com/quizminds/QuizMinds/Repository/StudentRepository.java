@@ -5,5 +5,7 @@ import lombok.NonNull;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface StudentRepository extends JpaRepository<StudentEntity, String> {
-    StudentEntity findStudentEntityByCodeOrEmail(@NonNull String code, @NonNull String email);
+    StudentEntity findStudentEntityByCodeOrEmail(String code, String email);
+
+    StudentEntity findStudentEntityByCode(String code);
 }

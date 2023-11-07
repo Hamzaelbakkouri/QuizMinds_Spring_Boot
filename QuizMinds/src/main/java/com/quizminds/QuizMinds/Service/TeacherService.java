@@ -1,5 +1,6 @@
 package com.quizminds.QuizMinds.Service;
 
+import com.quizminds.QuizMinds.Model.Entity.StudentEntity;
 import com.quizminds.QuizMinds.Model.Entity.TeacherEntity;
 import com.quizminds.QuizMinds.Repository.TeacherRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,24 +24,32 @@ public class TeacherService {
 
     public Optional<TeacherEntity> insertTeacher(TeacherEntity teacher) {
 
-        Optional<TeacherEntity> teacherOptional = Optional.of(teacher);
+        Optional<TeacherEntity> teacherOptional = Optional.ofNullable(this.teacherRepository.findTeacherEntityByCodeOrEmail(teacher.getCode(), teacher.getEmail()));
         if (teacherOptional.isPresent()) {
             throw new IllegalStateException("try different infos, something already taken");
         }
         return Optional.of(this.teacherRepository.save(teacher));
     }
 
-    public Optional<TeacherEntity> getOneTeacher(TeacherEntity teacher) {
-        return this.teacherRepository.findById(teacher.getCode());
+    public TeacherEntity getOneTeacher(TeacherEntity teacher) {
+        return this.teacherRepository.findTeacherEntityByCode(teacher.getCode());
     }
 
-    public Boolean deleteTeacher(TeacherEntity teacher) {
+    public String deleteTeacher(TeacherEntity teacher) {
         try {
-            this.teacherRepository.deleteById(teacher.getCode());
-            return true;
+            this.teacherRepository.deleteById(teacher.getId());
+            return "Teacher deleted successfully";
         } catch (Exception e) {
             new Exception("cant delete ,Something went wrong");
-            return false;
+            return "cant delete ,Something went wrong";
         }
+    }
+
+    public TeacherEntity updateTeacher(TeacherEntity teacherentity, String code) {
+        if (teacherRepository.findById(code).isPresent()) {
+            teacherentity.setId(code);
+            return teacherRepository.save(teacherentity);
+        }
+        return null;
     }
 }
