@@ -19,8 +19,9 @@ public class SubjectEntity {
     )
     private int id;
     @NonNull
-    private String Title;
-    @OneToOne
+    private String title;
+
+    @ManyToOne
     private SubjectEntity subject;
 
     @OneToMany(mappedBy = "subjectEntity")

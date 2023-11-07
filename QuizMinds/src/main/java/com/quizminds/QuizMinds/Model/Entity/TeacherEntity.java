@@ -20,7 +20,7 @@ public final class TeacherEntity extends PersonEntity {
     @OneToMany(mappedBy = "teacherEntity")
     private List<QuizEntity> quizEntity;
 
-    public TeacherEntity(String code, String firstname, String lastname, LocalDate bd, String address, String speciality, String email) {
+    public TeacherEntity(String code, String firstname, String lastname, LocalDate bd, String address, String email, String speciality) {
         super(code, firstname, lastname, bd, address, email);
         setSpeciality(speciality);
     }
