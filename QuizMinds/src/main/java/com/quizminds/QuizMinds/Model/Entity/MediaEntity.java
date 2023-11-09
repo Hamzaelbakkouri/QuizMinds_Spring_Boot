@@ -26,7 +26,7 @@ public class MediaEntity {
     @NonNull
     private String decription;
 
-    @OneToMany(mappedBy = "mediaEntities")
-    private List<QuestionEntity> questionEntities;
+    @ManyToOne
+    private QuestionEntity questionEntity;
 
 }

@@ -27,5 +27,6 @@ public class QuizQuestionEntity {
     private QuizEntity quizEntity;
     @NonNull
     @ManyToOne
+    @JoinColumn(name = "question_id")
     private QuestionEntity questionEntity;
 }

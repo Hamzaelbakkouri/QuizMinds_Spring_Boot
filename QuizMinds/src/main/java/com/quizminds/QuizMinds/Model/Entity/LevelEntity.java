@@ -1,35 +1,23 @@
 package com.quizminds.QuizMinds.Model.Entity;
 
-import com.quizminds.QuizMinds.Model.Enum.Level;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonMerge;
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.Data;
 
 import java.util.List;
 
-@Setter
-@Getter
-@NoArgsConstructor
-@RequiredArgsConstructor
 @Entity
 @Table
+@Data
 public class LevelEntity {
+
     @Id
-    @GeneratedValue(
-            strategy = GenerationType.IDENTITY,
-            generator = "Level_sequence"
-    )
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    @NonNull
-    private String description;
-    @NonNull
-    private Level level;
-    @NonNull
-    @ManyToOne
-    private QuestionEntity questionEntity;
-
-    @OneToMany(mappedBy = "levelEntity")
-    private List<QuestionEntity> questionEntities;
-
-//    @OneToMany(mappedBy = "mediaEntities")
-//    private List<QuestionEntity> questionEntities;
+    private int maxPoint;
+    private int minPoint;
+    @OneToMany(mappedBy = "level")
+    private List<QuestionEntity> questions;
 }

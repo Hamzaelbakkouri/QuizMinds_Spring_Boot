@@ -1,14 +1,13 @@
 package com.quizminds.QuizMinds.Controller;
 
 import com.quizminds.QuizMinds.Model.Entity.SubjectEntity;
-import com.quizminds.QuizMinds.Service.StudentService;
 import com.quizminds.QuizMinds.Service.SubjectService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
+
 
 @RestController
 @RequestMapping("/api/subject")
@@ -46,20 +45,24 @@ public class SubjectController {
 
 
     @GetMapping(path = "/getall")
-    public List<SubjectEntity> getSubjects(@RequestBody SubjectEntity subject) {
+    public List<SubjectEntity> getSubjects() {
         return subjectService.getSubjects();
     }
 
 
-    @GetMapping("/search/{title}")
+    @GetMapping("/getone/{title}")
     public SubjectEntity getSubject(@PathVariable String title) {
         return subjectService.getSubject(title);
     }
 
 
-    @DeleteMapping("delete/{id}")
-    public Integer deleteSubject(@PathVariable Integer id) {
-        return subjectService.deleteSubject(id);
+    @DeleteMapping("/delete/{id}")
+    public String deleteSubject(@PathVariable Integer id) {
+        int isDeleted = subjectService.deleteSubject(id);
+        if (isDeleted == 1) {
+            return "subject with id : " + id + "deleted successfully";
+        }
+        return "you cant delete subject with id : " + id;
     }
 
 }

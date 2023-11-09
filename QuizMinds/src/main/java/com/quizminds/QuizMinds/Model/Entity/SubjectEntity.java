@@ -19,11 +19,12 @@ public class SubjectEntity {
     )
     private int id;
     @NonNull
+    @Column(unique = true)
     private String title;
 
     @ManyToOne
     private SubjectEntity subject;
 
-    @OneToMany(mappedBy = "subjectEntity")
+    @OneToMany(mappedBy = "subject", fetch = FetchType.LAZY)
     private List<QuestionEntity> questions;
 }
