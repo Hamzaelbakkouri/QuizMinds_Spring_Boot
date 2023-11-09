@@ -1,41 +1,48 @@
 package com.quizminds.QuizMinds.Model.Entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.quizminds.QuizMinds.Model.Enum.QuestionQuiz;
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
+import org.springframework.lang.NonNull;
 
 import java.util.List;
 
-@Setter
-@Getter
 @Entity
 @Table
-@RequiredArgsConstructor
 @NoArgsConstructor
+@RequiredArgsConstructor
+@Data
 public class QuestionEntity {
+
     @Id
-    @GeneratedValue(
-            strategy = GenerationType.IDENTITY,
-            generator = "AssignQuiz_sequence"
-    )
-    private int id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @NonNull
+    private Integer id;
     @NonNull
     private String text;
     @NonNull
-    private QuestionQuiz questionQuiz;
+    private QuestionQuiz type;
+
+    @ManyToOne
+    @JsonBackReference
+    @JoinColumn(name = "subject_id", referencedColumnName = "id")
     @NonNull
+    private SubjectEntity subject;
+    @JsonBackReference
     @ManyToOne
-    private SubjectEntity subjectEntity;
+    @JoinColumn(name = "level_id", referencedColumnName = "id")
+    @NonNull
+    private LevelEntity level;
 
-    @OneToMany(mappedBy = "questionEntity")
-    private List<QuizQuestionEntity> quizQuestionEntities;
+    @JsonBackReference
+    @OneToMany(mappedBy = "question", fetch = FetchType.LAZY)
+    private List<ValidationEntity> validations;
 
-    @ManyToOne
-    private LevelEntity levelEntity;
+    @JsonBackReference
+    @OneToMany(mappedBy = "questionEntity", fetch = FetchType.LAZY)
+    private List<QuizQuestionEntity> quizzQuestions;
 
-    @ManyToOne
-    private MediaEntity mediaEntities;
-
-    @OneToMany(mappedBy = "question")
-    private List<ValidationEntity> validationEntities;
 }

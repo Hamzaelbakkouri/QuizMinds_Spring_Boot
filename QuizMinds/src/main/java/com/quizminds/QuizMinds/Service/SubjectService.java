@@ -27,11 +27,12 @@ public class SubjectService {
 
     public SubjectEntity createSubject(String title, Integer id) {
         Optional<SubjectEntity> isSubject = null;
+        SubjectEntity subject = new SubjectEntity(title);
         if (id != null) {
             isSubject = subjectRepository.findById(id);
+            subject.setSubject(isSubject.get());
         }
-        SubjectEntity subject = new SubjectEntity(title);
-        subject.setSubject(isSubject.get());
+
         return subjectRepository.save(subject);
     }
 
