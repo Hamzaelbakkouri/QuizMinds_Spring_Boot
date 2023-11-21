@@ -8,7 +8,6 @@ import java.util.List;
 @Setter
 @Getter
 @NoArgsConstructor
-@RequiredArgsConstructor
 @Entity
 @Table
 public class SubjectEntity {
@@ -18,7 +17,6 @@ public class SubjectEntity {
             generator = "Subject_sequence"
     )
     private int id;
-    @NonNull
     @Column(unique = true)
     private String title;
 

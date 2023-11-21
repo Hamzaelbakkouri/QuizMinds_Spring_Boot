@@ -10,12 +10,12 @@ import java.util.Optional;
 
 @Service
 public class SubjectService {
-    SubjectRepository subjectRepository;
-
     @Autowired
-    public SubjectService(SubjectRepository subjectRepository) {
-        this.subjectRepository = subjectRepository;
-    }
+    private SubjectRepository subjectRepository;
+
+//    public SubjectService(SubjectRepository subjectRepository) {
+//        this.subjectRepository = subjectRepository;
+//    }
 
     public SubjectEntity getSubject(String name) {
         return subjectRepository.findByTitle(name).get();
@@ -27,12 +27,12 @@ public class SubjectService {
 
     public SubjectEntity createSubject(String title, Integer id) {
         Optional<SubjectEntity> isSubject = null;
-        SubjectEntity subject = new SubjectEntity(title);
+        SubjectEntity subject = new SubjectEntity();
+        subject.setTitle(title);
         if (id != null) {
             isSubject = subjectRepository.findById(id);
             subject.setSubject(isSubject.get());
         }
-
         return subjectRepository.save(subject);
     }
 
@@ -40,7 +40,8 @@ public class SubjectService {
         Optional<SubjectEntity> existSubject = subjectRepository.findById(id);
         Optional<SubjectEntity> isSubject = subjectRepository.findById(subjectCode);
         if (existSubject.isPresent()) {
-            SubjectEntity subject = new SubjectEntity(title);
+            SubjectEntity subject = new SubjectEntity();
+            subject.setTitle(title);
             subject.setId(existSubject.get().getId());
             subject.setSubject(isSubject.get());
             return subjectRepository.save(subject);
