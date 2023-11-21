@@ -1,7 +1,12 @@
 package com.quizminds.QuizMinds.Model.Entity;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
 import lombok.*;
+
+import java.util.List;
 
 @Setter
 @Getter
@@ -9,6 +14,7 @@ import lombok.*;
 @RequiredArgsConstructor
 @Entity
 @Table
+
 public class ValidationEntity {
     @Id
     @GeneratedValue(
@@ -16,12 +22,16 @@ public class ValidationEntity {
             generator = "validation_sequence"
     )
     private int id;
+
     @NonNull
     private int point;
+
     @NonNull
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private QuestionEntity question;
+
     @NonNull
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private AnswerQuestionEntity answerQuestion;
+
 }

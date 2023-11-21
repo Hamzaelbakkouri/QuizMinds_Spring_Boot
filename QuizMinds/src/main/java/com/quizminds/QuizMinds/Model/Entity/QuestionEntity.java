@@ -1,6 +1,7 @@
 package com.quizminds.QuizMinds.Model.Entity;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.quizminds.QuizMinds.Model.DTO.MediaDTO;
 import com.quizminds.QuizMinds.Model.Enum.QuestionQuiz;
 import jakarta.persistence.*;
 import lombok.Data;
@@ -13,36 +14,35 @@ import java.util.List;
 @Entity
 @Table
 @NoArgsConstructor
-@RequiredArgsConstructor
 @Data
 public class QuestionEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @NonNull
     private Integer id;
-    @NonNull
     private String text;
-    @NonNull
     private QuestionQuiz type;
 
     @ManyToOne
-    @JsonBackReference
     @JoinColumn(name = "subject_id", referencedColumnName = "id")
-    @NonNull
+    @JsonIgnore
     private SubjectEntity subject;
-    @JsonBackReference
+
     @ManyToOne
+    @JsonIgnore
     @JoinColumn(name = "level_id", referencedColumnName = "id")
-    @NonNull
     private LevelEntity level;
 
-    @JsonBackReference
+    @JsonIgnore
     @OneToMany(mappedBy = "question", fetch = FetchType.LAZY)
     private List<ValidationEntity> validations;
 
-    @JsonBackReference
+    @JsonIgnore
     @OneToMany(mappedBy = "questionEntity", fetch = FetchType.LAZY)
-    private List<QuizQuestionEntity> quizzQuestions;
+    private List<QuizQuestionEntity> quizQuestions;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "questionEntity", fetch = FetchType.LAZY)
+    private List<MediaEntity> medias;
 
 }

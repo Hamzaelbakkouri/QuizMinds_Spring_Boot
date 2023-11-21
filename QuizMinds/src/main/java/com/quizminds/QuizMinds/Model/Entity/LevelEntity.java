@@ -1,8 +1,7 @@
 package com.quizminds.QuizMinds.Model.Entity;
 
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonMerge;
+import com.quizminds.QuizMinds.Model.Enum.Level;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -16,8 +15,11 @@ public class LevelEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+    private Level levelType;
     private int maxPoint;
     private int minPoint;
+
+    @JsonIgnore
     @OneToMany(mappedBy = "level")
     private List<QuestionEntity> questions;
 }

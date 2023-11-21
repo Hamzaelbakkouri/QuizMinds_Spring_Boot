@@ -10,7 +10,6 @@ import java.util.List;
 @Setter
 @Getter
 @NoArgsConstructor
-@RequiredArgsConstructor
 public class AnswerQuestionEntity {
     @Id
     @GeneratedValue(
@@ -18,9 +17,9 @@ public class AnswerQuestionEntity {
             generator = "AnswerQuestion_sequence"
     )
     private int id;
-    @NonNull
+
     private String text;
-    @NonNull
+
     @OneToMany(mappedBy = "answerQuestion")
     private List<ValidationEntity> validations;
 }

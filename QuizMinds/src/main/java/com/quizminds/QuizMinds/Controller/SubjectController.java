@@ -13,12 +13,8 @@ import java.util.Map;
 @RequestMapping("/api/subject")
 public class SubjectController {
 
-    SubjectService subjectService;
-
     @Autowired
-    public SubjectController(SubjectService subjectService) {
-        this.subjectService = subjectService;
-    }
+    private SubjectService subjectService;
 
     @PostMapping(path = "/insert")
     public SubjectEntity createSubject(@RequestBody Map<String, Object> requestData) {

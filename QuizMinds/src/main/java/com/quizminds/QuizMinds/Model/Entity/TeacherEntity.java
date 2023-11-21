@@ -24,7 +24,4 @@ public final class TeacherEntity extends PersonEntity {
         super(code, firstname, lastname, bd, address, email);
         setSpeciality(speciality);
     }
-
-    @OneToMany(mappedBy = "teacherEntity")
-    private List<QuizEntity> quizs;
 }
