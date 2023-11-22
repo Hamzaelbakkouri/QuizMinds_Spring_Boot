@@ -22,7 +22,12 @@ public final class StudentEntity extends PersonEntity {
     private LocalDate registrationDate;
 
     public StudentEntity(String code, String firstname, String lastname, LocalDate bd, String address, String email) {
-        super(code, firstname, lastname, bd, address, email);
+        setFirstName(firstname);
+        setLastName(lastname);
+        setCode(code);
+        setDateOfBirth(bd);
+        setAddress(address);
+        setEmail(email);
     }
 
     @OneToMany(mappedBy = "studentEntity", fetch = FetchType.LAZY)

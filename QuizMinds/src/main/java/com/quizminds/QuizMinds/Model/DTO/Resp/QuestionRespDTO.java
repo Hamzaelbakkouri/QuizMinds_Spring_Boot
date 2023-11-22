@@ -5,7 +5,6 @@ import com.quizminds.QuizMinds.Model.DTO.QuizQuestionDTO;
 import com.quizminds.QuizMinds.Model.DTO.SubjectDTO;
 import com.quizminds.QuizMinds.Model.DTO.ValidationDTO;
 import com.quizminds.QuizMinds.Model.Entity.LevelEntity;
-import com.quizminds.QuizMinds.Model.Entity.MediaEntity;
 import com.quizminds.QuizMinds.Model.Enum.QuestionQuiz;
 import lombok.Data;
 import lombok.NoArgsConstructor;

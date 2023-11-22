@@ -1,5 +1,6 @@
 package com.quizminds.QuizMinds.Model.DTO.Resp;
 
+import com.quizminds.QuizMinds.Model.DTO.QuizDTO;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -16,5 +17,5 @@ public class TeacherRespDTO {
     private String address;
     private String email;
     private String speciality;
-    private List<QuizRespDTO> quizEntity;
+    private List<QuizDTO> quizEntity;
 }

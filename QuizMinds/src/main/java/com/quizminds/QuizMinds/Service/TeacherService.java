@@ -41,7 +41,7 @@ public class TeacherService implements I_Teacher {
 
     @Override
     public Optional<TeacherRespDTO> get(TeacherDTO teacher) {
-        return this.teacherRepository.findById(teacher.getCode()).map(validation -> modelMapper.map(validation, TeacherRespDTO.class));
+        return Optional.of(modelMapper.map(this.teacherRepository.findTeacherEntityByCode(teacher.getCode()), TeacherRespDTO.class));
     }
 
     @Override
