@@ -44,5 +44,4 @@ public class QuestionEntity {
     @JsonIgnore
     @OneToMany(mappedBy = "questionEntity", fetch = FetchType.LAZY)
     private List<MediaEntity> medias;
-
 }

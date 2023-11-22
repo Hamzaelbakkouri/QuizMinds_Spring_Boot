@@ -25,7 +25,7 @@ public class MediaEntity {
     private String url;
     @NonNull
     private String decription;
-
+    
     @ManyToOne
     private QuestionEntity questionEntity;
 
